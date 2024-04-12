@@ -1,0 +1,43 @@
+// Inserir usuário novo
+POST http://localhost:8080/user 
+Content-Type: application/json
+
+{
+    "nome": "Administador",
+    "login": "admin",
+    "senha": "123123",
+    "email": "admin@gmail.com"
+}
+
+// Utiliza-se obrigatoriamente: ###, para separar uma requisção da outra. 
+###
+
+// Mostrar todos os usuários
+GET http://localhost:8080/user/list
+
+###
+
+// Mostrar um usuário por ID
+GET http://localhost:8080/user/2
+
+###
+
+// Alterar um usuário
+PUT http://localhost:8080/user 
+Content-Type: application/json
+
+{
+    "nome": "Administador",
+    "login": "admin",
+    "senha": "12312",
+    "email": "admin@gmail.com"
+}
+
+###
+
+// Buscar por nome
+GET http://localhost:8080/user/search/min
+
+###
+
+GET http://localhost:8080/user/searchs/min
