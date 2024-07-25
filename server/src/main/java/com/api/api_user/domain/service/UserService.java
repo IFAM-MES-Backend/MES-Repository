@@ -85,11 +85,15 @@ public class UserService {
     }
 
     public List<UserDto> getUserByName(String nome) {
-        List<User> users = userRepository.findUserByName(nome);
-        List<UserDto> dto = new ArrayList<>();
-        for(int i = 0; i < users.size(); i++) {
-            dto.add(modelMapper.map(users.get(i), UserDto.class));
-        }
-        return dto;
+        List<UserDto> users = new ArrayList<>();
+        userRepository.findUserByName(nome).forEach(User -> users.add(modelMapper.map(User, UserDto.class)));
+        return users;
     }
+
+    public List<UserDto> getUserByLogin(String login) {
+        List<UserDto> users = new ArrayList<>();
+        userRepository.findUserByLogin(login).forEach(User -> users.add(modelMapper.map(User, UserDto.class)));
+        return users;
+    }
+
 }

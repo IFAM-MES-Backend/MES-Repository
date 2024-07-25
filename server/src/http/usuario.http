@@ -3,10 +3,10 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-    "nome": "Administador",
-    "login": "admin",
-    "senha": "123123",
-    "email": "admin@gmail.com"
+    "nome": "Rafael",
+    "login": "rafael",
+    "senha": "123456",
+    "email": "rafael@gmail.com"
 }
 
 // Utiliza-se obrigatoriamente: ###, para separar uma requisção da outra. 
@@ -36,8 +36,31 @@ Content-Type: application/json
 ###
 
 // Buscar por nome
-GET http://localhost:8080/user/search/min
+GET http://localhost:8080/user/nome/min
 
 ###
 
-GET http://localhost:8080/user/searchs/min
+// Buscar por login
+GET http://localhost:8080/user/login/min
+
+###
+
+// Inserir uma requisicao nova
+POST http://localhost:8080/request 
+Content-Type: application/json
+
+{
+    "nomeSolicitante": "Rafael",
+    "nomeSistema": "pagamento",
+    "data": "2024-07-22",
+    "descricaoRequisicao": "Ocorreu um problema serio no sistema do pagamento",
+    "statusRequisicao" : 1,
+    "anexo": "",
+    "dataFechamento": ""
+}
+
+###
+
+// Mostrar as requisicoes
+
+GET http://localhost:8080/request/list

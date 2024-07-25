@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
@@ -35,6 +36,7 @@ public class UserController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseDto saveUser(@Valid @RequestBody User user) {
+    user.setNome(user.getNome().toUpperCase());
     return userService.saveUser(user);
   }
 
@@ -63,9 +65,17 @@ public class UserController {
     return userService.validateLogin(login, password);
   }
 
-  @GetMapping(value = "/search/{name}")
+  @GetMapping(value = "/nome/{name}")
   public List<UserDto> getUserByName(@Valid @PathVariable String name) {
     name = "%" + name + "%";
     return userService.getUserByName(name);
   }
+
+  @GetMapping("/login/{login}")
+  public List<UserDto> getUserByLogin(@Valid @PathVariable String login) {
+    login = "%" + login + "%";  
+    return userService.getUserByLogin(login);
+  }
+  
+
 }
