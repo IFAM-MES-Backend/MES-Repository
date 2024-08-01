@@ -3,10 +3,10 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-    "nome": "Rafael",
-    "login": "rafael",
-    "senha": "123456",
-    "email": "rafael@gmail.com"
+    "nome": "David",
+    "login": "david",
+    "senha": "1234567",
+    "email": "davi@gmail.com"
 }
 
 // Utiliza-se obrigatoriamente: ###, para separar uma requisção da outra. 
@@ -18,7 +18,7 @@ GET http://localhost:8080/user/list
 ###
 
 // Mostrar um usuário por ID
-GET http://localhost:8080/user/2
+GET http://localhost:8080/user/6
 
 ###
 
@@ -41,7 +41,7 @@ GET http://localhost:8080/user/nome/min
 ###
 
 // Buscar por login
-GET http://localhost:8080/user/login/min
+GET http://localhost:8080/user/login/david
 
 ###
 
@@ -62,5 +62,9 @@ Content-Type: application/json
 ###
 
 // Mostrar as requisicoes
-
 GET http://localhost:8080/request/list
+
+###
+
+// Testar rota de login
+POST http://localhost:8080/user/validarLogin/david/1234567

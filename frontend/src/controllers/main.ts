@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 
-const login = async (req:Request, res: Response) => {
-    const request = async (login:string, senha:string) => {
+const login = async (req: Request, res: Response) => {
+    const request = async(login: string, senha: string) => {
         try {
-            const response = await fetch(`http://127.0.0.1:8080/user/validarLogin/${login}/${senha}`,  {
+            const username = login.replace(/['"]+/g, ""); // tirando as aspas
+            const pwd = senha.replace(/['"]+/g, ""); // tirando as aspas
+
+            const response = await fetch(`http://localhost:8080/user/validarLogin/${username}/${pwd}`, {
                 method : "POST"
             });
             if (!response.ok) {
@@ -16,17 +19,16 @@ const login = async (req:Request, res: Response) => {
               
             req.session.user = await response.json();
             res.redirect("/usuario");
-        } catch (err) {
+        } catch(err) {
             console.error("Erro:", err);
         }
     }
     
-
-    if(req.method == "GET"){
+    if(req.method == "GET") {
         res.render("login", {
             layout:false
         });
-    }else if(req.method == "POST"){
+    } else if(req.method == "POST") {
         await request(req.body.login, req.body.senha)
     }
 }
